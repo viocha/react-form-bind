@@ -1,0 +1,47 @@
+{
+  "name": "react-form-bind",
+  "version": "1.0.0",
+  "author": "viocha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viocha/react-form-bind"
+  },
+  "type": "module",
+  "description": "A simple and convenient library for form binding in React.",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "node": "./dist/index.js",
+        "default": "./dist/esm/index.js"
+      },
+      "require": "./dist/index.cjs"
+    }
+  },
+  "unpkg": "dist/global/index.js",
+  "jsdelivr": "dist/global/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "bash -c 'rm -rf dist'",
+    "build": "npm run clean && rollup -c",
+    "publish": "npm publish --access public",
+    "build-publish": "npm run build && npm run publish"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^19.1.4",
+    "react": "^18.3.1",
+    "rollup": "^4.40.2",
+    "typescript": "^5.8.3"
+  }
+}
