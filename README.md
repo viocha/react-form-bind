@@ -16,7 +16,7 @@
   * Browser `global` version and `ESM` module
   * Node.js `CJS` and `MJS` modules
 
-Live demo: [https://github.io/viocha/react-form-bind](https://github.io/viocha/react-form-bind)
+Live demo: [https://viocha.github.io/react-form-bind/](https://viocha.github.io/react-form-bind/)
 
 ## 📦 Installation
 
