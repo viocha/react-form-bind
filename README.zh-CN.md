@@ -14,7 +14,9 @@
   * 浏览器 `global` 版本和 `ESM` 模块
   * Node.js 的 `CJS` 和 `MJS` 模块
 
-使用示例演示：[https://viocha.github.io/react-form-bind/](https://viocha.github.io/react-form-bind)
+完整示例演示：[https://viocha.github.io/react-form-bind/](https://viocha.github.io/react-form-bind)
+
+对应的示例代码：[index.html](./web/index.html)
 
 ## 📦 安装
 
