@@ -16,7 +16,7 @@
   * Browser `global` version and `ESM` module
   * Node.js `CJS` and `MJS` modules
 
-Live Demo: [https://viocha.github.io/react-form-bind/](https://viocha.github.io/react-form-bind)
+Live Demo: [useModel Demo](https://viocha.github.io/react-form-bind)
 
 Example Code: [index.html](./web/index.html)
 
