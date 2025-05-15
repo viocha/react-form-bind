@@ -9,10 +9,6 @@
 * 初始值重置，序列化输出，获取 DOM 引用
 * 根据初始值类型决定状态的类型和行为方式
 * 全 TypeScript 支持，类型推导完善
-* 同时支持多种构建格式：
-
-  * 浏览器 `global` 版本和 `ESM` 模块
-  * Node.js 的 `CJS` 和 `MJS` 模块
 
 完整示例演示：[useModel Demo](https://viocha.github.io/react-form-bind)
 

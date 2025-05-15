@@ -1,6 +1,6 @@
 {
   "name": "react-form-bind",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "viocha",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,7 @@
   ],
   "scripts": {
     "clean": "bash -c 'rm -rf dist'",
-    "build": "npm run clean && rollup -c",
-    "publish": "npm publish --access public",
-    "build-publish": "npm run build && npm run publish"
+    "build": "npm run clean && rollup -c"
   },
   "peerDependencies": {
     "react": ">=17.0.0"

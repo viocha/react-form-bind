@@ -10,50 +10,6 @@ const external = [
 
 export default defineConfig([
 	{
-		// Browser UMD
-		input:'src/index.tsx',
-		output:{
-			file:'dist/global/index.js',
-			format:'umd',
-			name:'ReactFormBind', // global module name
-			globals:{
-				'react':'React',
-			},
-			sourcemap:true,
-		},
-		external:external,
-		plugins:[
-			resolve(),
-			commonjs(),
-			typescript({
-				declaration:false,
-			}),
-		],
-	},
-	{
-		// Browser ESM
-		input:'src/index.tsx',
-		output:{
-			file:'dist/esm/index.js',
-			format:'esm',
-			sourcemap:true,
-			paths:(id)=>{
-				if (id==='react'){
-					return 'https://esm.sh/react';
-				}
-				return id;
-			},
-		},
-		external:external,
-		plugins:[
-			resolve(),
-			commonjs(),
-			typescript({
-				declaration:false,
-			}),
-		],
-	},
-	{
 		// Node ESM
 		input:'src/index.tsx',
 		output:{
@@ -86,5 +42,26 @@ export default defineConfig([
 				declarationDir:'dist',
 			}),
 		],
-	}
+	},
+	{
+		// Browser UMD
+		input:'src/index.tsx',
+		output:{
+			file:'dist/global/index.js',
+			format:'umd',
+			name:'ReactFormBind', // global module name
+			globals:{
+				'react':'React',
+			},
+			sourcemap:true,
+		},
+		external:external,
+		plugins:[
+			resolve(),
+			commonjs(),
+			typescript({
+				declaration:false,
+			}),
+		],
+	},
 ]);

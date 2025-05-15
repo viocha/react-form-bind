@@ -11,10 +11,6 @@
 * Reset to initial value, serialize value, and access DOM references
 * Infers state type and behavior based on the initial value
 * Full TypeScript support with comprehensive type inference
-* Supports multiple build formats:
-
-  * Browser `global` version and `ESM` module
-  * Node.js `CJS` and `MJS` modules
 
 Live Demo: [useModel Demo](https://viocha.github.io/react-form-bind)
 
