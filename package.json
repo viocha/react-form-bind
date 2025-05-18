@@ -1,0 +1,52 @@
+{
+  "name": "react-form-bind",
+  "version": "1.0.0",
+  "author": "viocha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viocha/react-form-bind.git"
+  },
+  "type": "module",
+  "description": "A simple and convenient library for form binding in React.",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "node": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "bash -c 'rm -rf dist'",
+    "build": "npm run clean && microbundle --globals react=React",
+    "build-web": "parcel build web/index.html --dist-dir dist-web",
+    "test-web": "parcel web/index.html --dist-dir /tmp --open"
+  },
+  "targets": {
+    "module": false,
+    "main": false,
+    "types": false
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^19.1.4",
+    "microbundle": "^0.15.1",
+    "parcel": "^2.15.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  }
+}

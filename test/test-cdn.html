@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>React Demo</title>
+</head>
+
+<body>
+
+<div id="root"></div>
+<script src="https://esm.sh/tsx" type="module"></script>
+<script data-type="module" type="text/babel">
+  import React from 'https://esm.sh/react';
+  import {createRoot} from 'https://esm.sh/react-dom/client';
+  import {useModel} from 'https://esm.sh/react-form-bind';
+
+  function App(){
+    const model = useModel(0, 'number');
+    return (
+        <>
+          <div style={{textAlign:'center'}}>
+            <button onClick={()=>{
+              model.val++;
+            }}>  {model.val} clicks
+            </button>
+            <input type="number" {...model.bind}/>
+          </div>
+        </>
+    );
+  }
+  createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

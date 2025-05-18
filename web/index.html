@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>useModel Demo</title>
+<style>
+  button,
+  label,
+  input:is([type="radio"], [type="checkbox"], [type="button"]) {
+    &:not([disabled]) {
+      cursor : pointer;
+
+      &:active {
+        user-select : none;
+      }
+    }
+  }
+
+  label,
+  button {
+    margin : 0 0.5em;
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+  import {createRoot} from 'react-dom/client';
+  import {useModel} from '../src/index.ts';
+
+  function App(){
+    const defaultTypeModels = {
+      text:useModel('default-text'),
+      email:useModel('default@email.com'),
+      password:useModel('default-password'),
+      url:useModel('http://default-url.com'),
+      tel:useModel('1234567890'),
+      search:useModel('default-search-value'),
+      color:useModel('#f00'),
+      hidden:useModel('hidden-value'),
+      date:useModel('2023-01-01'),
+      time:useModel('12:00'),
+      'datetime-local':useModel('2023-01-01T12:00'),
+      week:useModel('2023-W01'),
+      month:useModel('2023-01'),
+    };
+    const textarea = useModel('default-textarea-value\nsecond line');
+
+    const number = useModel(123, 'number');
+    const range = useModel(20, 'range');
+
+    const radio = useModel('', 'radio');
+
+    const checkbox = useModel(false, 'checkbox');
+    const checkboxGroup = useModel(['1', '2'], 'checkbox');
+
+    const select = useModel('', 'select');
+    const selectMulti = useModel(['1', '2'], 'select');
+
+    const file = useModel(null, 'file');
+    const fileMulti = useModel([], 'file');
+
+    const syncModel = useModel('default-sync-value');
+
+    return (
+        <main>
+          <h1> useModel Demo</h1>
+          <h2> Default Types (Text)</h2>
+
+          <h3>Single-line Inputs</h3>
+          {Object.keys(defaultTypeModels).map((type)=>(
+              <div key={type}>
+                <div className="input-line">
+                  <button onClick={defaultTypeModels[type].reset}>Reset</button>
+                  <label>
+                    {type}:
+                    <input type={type} {...defaultTypeModels[type].bind} />
+                  </label>
+                  <span>Value: {defaultTypeModels[type].val}</span>
+                </div>
+              </div>
+          ))}
+
+          <h3> Multi-line Textarea</h3>
+          <div>
+            <label>
+              Textarea:
+              <textarea {...textarea.bind} />
+            </label>
+            <button onClick={textarea.reset}>Reset</button>
+          </div>
+          <p>Value:</p>
+          <p style={{whiteSpace:'pre'}}>{textarea.val}</p>
+
+          <h2> Numbers</h2>
+          <div className="input-line">
+            <button onClick={number.reset}>Reset</button>
+            <label>
+              number:
+              <input type="number" {...number.bind} />
+            </label>
+            <span>Value: {number.val}</span>
+          </div>
+          <div className="input-line">
+            <button onClick={range.reset}>Reset</button>
+            <label>
+              range:
+              <input type="range" {...range.bind} />
+            </label>
+            <span>Value: {range.val}</span>
+          </div>
+
+          <h2> Radio Buttons</h2>
+          <div>
+            <label>
+              <input type="radio" value="1" {...radio.bind} />
+              Radio 1
+            </label>
+            <label>
+              <input type="radio" value="2" {...radio.bind} />
+              Radio 2
+            </label>
+            <label>
+              <input type="radio" value="3" {...radio.bind} />
+              Radio 3
+            </label>
+            <button onClick={radio.reset}>Reset</button>
+          </div>
+          <p>Value: {radio.val}</p>
+
+          <h2> Checkboxes</h2>
+          <h3>Single Checkbox</h3>
+          <div>
+            <label>
+              <input type="checkbox" {...checkbox.bind} />
+              Checkbox
+            </label>
+            <button onClick={checkbox.reset}>Reset</button>
+          </div>
+          <p>Value: {checkbox.val? 'Checked': 'Unchecked'}</p>
+
+          <h3>Checkbox Group</h3>
+          <div>
+            <label>
+              <input type="checkbox" value="1" {...checkboxGroup.bind} />
+              Option 1
+            </label>
+            <label>
+              <input type="checkbox" value="2" {...checkboxGroup.bind} />
+              Option 2
+            </label>
+            <label>
+              <input type="checkbox" value="3" {...checkboxGroup.bind} />
+              Option 3
+            </label>
+            <button onClick={checkboxGroup.reset}>Reset</button>
+          </div>
+          <p>Value: {checkboxGroup.toString()}</p>
+
+          <h2> Select</h2>
+          <h3>Single Select</h3>
+          <div>
+            <label>
+              Select:
+              <select {...select.bind}>
+                <option value="">Please select</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </label>
+            <button onClick={select.reset}>Reset</button>
+          </div>
+          <p>Value: {select.val}</p>
+
+          <h3>Multi Select</h3>
+          <div>
+            <label>
+              Select Multiple:
+              <select multiple {...selectMulti.bind}>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </label>
+            <button onClick={selectMulti.reset}>Reset</button>
+          </div>
+          <p>Value: {selectMulti.toString()}</p>
+
+          <h2> File Inputs</h2>
+          <h3>Single File</h3>
+          <div>
+            <label>
+              File:
+              <input type="file" {...file.bind} />
+            </label>
+            <button onClick={file.reset}>Reset</button>
+          </div>
+          <p>Value: {file.toString()}</p>
+
+          <h3>Multiple Files</h3>
+          <div>
+            <label>
+              Files:
+              <input type="file" multiple {...fileMulti.bind} />
+            </label>
+            <button onClick={fileMulti.reset}>Reset</button>
+          </div>
+          <p>Value: {fileMulti.toString()}</p>
+
+          <h2> Multiple Bindings</h2>
+          <div>
+            <label>
+              Text A:
+              <input type="text" {...syncModel.bind} />
+            </label>
+            <label>
+              Text B:
+              <input type="text" {...syncModel.bind} />
+            </label>
+            <button onClick={syncModel.reset}>Reset</button>
+            <span>Value: {syncModel.val}</span>
+          </div>
+        </main>
+    );
+  }
+
+  createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+</body>
+
+</html>

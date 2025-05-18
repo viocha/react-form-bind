@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>useModel Hook</title>
+
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+  import {createRoot} from 'react-dom/client';
+  import {useModel} from '../src/index.ts';
+
+  function App(){
+    const count = useModel(0, 'number');
+
+    return (
+        <div style={{textAlign:'center'}}>
+          <h1>useModel Hook</h1>
+          <h2>Counter</h2>
+          <button onClick={()=>{
+            count.latest++;
+            count.latest++;
+          }}> latest++ x2
+          </button>
+          <button onClick={()=>{
+            count.val++;
+            count.val++;
+          }}> val++ x2
+          </button>
+          <p>{count.val} clicks</p>
+          <input type="number" {...count.bind}/>
+        </div>
+    );
+  }
+
+  const root = createRoot(document.getElementById('root'));
+  root.render(<App/>);
+
+</script>
+</body>
+</html>
